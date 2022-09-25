@@ -1,0 +1,12 @@
+{
+  "name": "ren-ui-09-25",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ren-ui.common.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,55 @@
+封装基于 vue 项目的组件库
+1、创建 vue 项目
+
+2、在 src 文件夹下创建 package 文件夹，用来管理组件
+    新建组件文件夹，并在文件夹下新建 .vue 文件
+    写入组件的样式及脚本信息，注意要为组件添加 name 属性，后期要用，建议见名知意
+    可以将组件注册到 App.vue 中检查样式及 js 是否符合要求
+
+3、在管理组件的 package 文件夹中，新建 index.js 文件
+    导入封装好的组件，将所有组件放入一个数组中
+    声明一个函数，使用 forEach 遍历数组，使用 Vue.component 注册组件
+    Vue.component 接收两个参数(item.name,item)
+    导出这个函数
+
+4、在项目根目录的 package.json 文件中添加打包配置项
+    在 scripts 中添加以下配置：
+    "package": "vue-cli-service build --target lib ./src/package/index.js --name ren-ui --dest ren-ui"
+    注释：
+        --target lib  =>要打包的文件
+        --name  =>打包后的文件名称
+        --dest  =>打包后的文件夹名称
+
+5、执行 npm run package 命令
+    开始打包
+
+6、打包生成的文件夹下配置 package.json 文件
+    进入打包生成的文件夹，运行 npm init -y 生成 package.json 文件
+
+7、注册 npm 账号（有账号的可以直接使用）
+
+8、如果电脑设置了 cnpm，要将 cnpm 改为 npm 官方源，以便发表组件
+    运行 npm config set registry://registry npmjs.org 可以将 cnpm 改回 npm 
+
+9、进入打包后的目录，添加 npm 账户
+    运行 npm login 命令
+    输入 npm 账户的用户名、密码及邮箱，在输入密码时不会显示字符
+    运行 npm publish 发表
+        可能会报错
+        403 =>名称有冲突，在 package.json 文件中更改 name 属性名即可
+    再次运行 npm publish 发表
+
+10、在项目中使用组件的方式和 UI 库一样
+    用 npm install 组件库名称 
+    在 main.js 中导入组件库
+    同时导入css 样式
+    使用：Vue.use(组件库名称)
+
+封装注意事项：
+    1.组件封装之后，要在根目录的 package.json 文件中添加打包配置项，
+    
+    2。要在打包生成的文件夹下运行 npm init -y 命令，自动创建 package.json 文件，
+    发表时会根据该文件中的配置进行
+
+    3.删除 mpm 库中的组件库
+    npm unpublish 组件库名称
